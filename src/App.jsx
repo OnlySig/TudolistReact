@@ -14,10 +14,12 @@ const TarefaTitle = styled.h3`
   text-align: center;
   margin-bottom: 8px;
 `
-function App() {
+const App = () => {
   const [tarefas, setTarefas] = useState([])
   const [tarefaSelecionada, setTarefeSelecionada] = useState(null)
   const aoCadastrarTarefa = (tarefa) => {
+    const found = tarefas.find(tarefaMapiada => tarefaMapiada.nome === tarefa.nome)
+    if(found)return
     setTarefas([...tarefas, tarefa])
   }
   const deletaTarefa = (tarefa) => {

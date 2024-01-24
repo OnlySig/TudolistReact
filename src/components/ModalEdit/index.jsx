@@ -13,21 +13,23 @@ const ContainerDialog = styled.dialog`
     border-radius: 20px;
     background: #154580;
 `
-
+const ContainerModal = styled.form`
+    margin-top: 8px;
+`
 const ModalEdit = ({ tarefaSelec, aoFechar }) => {
     if(tarefaSelec) {
         const [tarefa, setTarefa] = useState(tarefaSelec.nome)
         const fazerTudo = () => {
-            setTarefa(tarefaSelec.nome = tarefa)
+            tarefa === '' ? setTarefa(tarefaSelec.nome = 'vazio não fica') : setTarefa(tarefaSelec.nome = tarefa)
             aoFechar()
         }
         return(
             <>
                 <ContainerDialog open={!!tarefaSelec}>
                     <InputComponent obrigatorio label='Edite sua tarefa' id='editar' type='text' placeholder={tarefaSelec.nome} valor={tarefa} aoDigitado={tarefa=> setTarefa(tarefa)}/>
-                    <form method="dialog">
+                    <ContainerModal method="dialog">
                         <Botao aoClicar={fazerTudo}>EDITAR</Botao>
-                    </form>
+                    </ContainerModal>
                 </ContainerDialog>
             </>
         )
